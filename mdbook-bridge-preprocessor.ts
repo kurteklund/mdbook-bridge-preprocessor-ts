@@ -10,17 +10,13 @@ const suitClub = `<span class="suit-c">♣</span>`;
 
 MdBookPreprocessorBuilder.builder()
   .withRendererSupport("html")
-  .withRawContentHandler((chapter: Chapter) => {
-    chapter.content = chapter.content
-      // Regexp flags
-      // g: global. All matches (don't return after first match)
-      // i: insensitive. Case insensitive match
-      .replace(/!s/gi, suitSpade) // '!s' case insetive
-      .replace(/!h/gi, suitHeart)
-      .replace(/!d/gi, suitDimond)
-      .replace(/!r/gi, suitDimond) // Swedish ruter
-      .replace(/!c/gi, suitClub)
-      .replace(/!k/gi, suitClub); // Swedish klöver
-    return chapter;
-  })
+  // Regexp flags
+  // g: global. All matches (don't return after first match)
+  // i: insensitive. Case insensitive match
+  .withRegExpHandler(/!s/gi, () => suitSpade)
+  .withRegExpHandler(/!h/gi, () => suitHeart)
+  .withRegExpHandler(/!d/gi, () => suitDimond)
+  .withRegExpHandler(/!c/gi, () => suitClub)
+  .withRegExpHandler(/!r/gi, () => suitDimond) // Swedish ruter
+  .withRegExpHandler(/!k/gi, () => suitClub) // Swedish klöver
   .ready();

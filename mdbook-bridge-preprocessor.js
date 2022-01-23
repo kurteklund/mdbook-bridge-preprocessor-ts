@@ -7,17 +7,13 @@ var suitDimond = "<span class=\"suit-d\">\u2666</span>";
 var suitClub = "<span class=\"suit-c\">\u2663</span>";
 mdbook_nodejs_preprocessor_builder_1.MdBookPreprocessorBuilder.builder()
     .withRendererSupport("html")
-    .withRawContentHandler(function (chapter) {
-    chapter.content = chapter.content
-        // Regexp flags
-        // g: global. All matches (don't return after first match)
-        // i: insensitive. Case insensitive match
-        .replace(/!s/gi, suitSpade) // '!s' case insetive
-        .replace(/!h/gi, suitHeart)
-        .replace(/!d/gi, suitDimond)
-        .replace(/!r/gi, suitDimond) // Swedish ruter
-        .replace(/!c/gi, suitClub)
-        .replace(/!k/gi, suitClub); // Swedish klöver
-    return chapter;
-})
+    // Regexp flags
+    // g: global. All matches (don't return after first match)
+    // i: insensitive. Case insensitive match
+    .withRegExpHandler(/!s/gi, function () { return suitSpade; })
+    .withRegExpHandler(/!h/gi, function () { return suitHeart; })
+    .withRegExpHandler(/!d/gi, function () { return suitDimond; })
+    .withRegExpHandler(/!c/gi, function () { return suitClub; })
+    .withRegExpHandler(/!r/gi, function () { return suitDimond; }) // Swedish ruter
+    .withRegExpHandler(/!k/gi, function () { return suitClub; }) // Swedish klöver
     .ready();
