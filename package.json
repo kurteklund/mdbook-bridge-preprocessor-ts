@@ -1,0 +1,14 @@
+{
+  "name": "mdbook-bridge-preprocessor",
+  "version": "1.0.0",
+  "description": "Simplify writing bridge stuff in mdbook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mdbook-nodejs-preprocessor-builder": "0.0.2"
+  }
+}
